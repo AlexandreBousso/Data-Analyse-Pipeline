@@ -34,12 +34,27 @@ def df_info(df):
     print(df.head())
     print("\n Informations sur les données :")
     print(df.info())
+    return(df)
 
+
+def check_missing(df):
+    print("Analyse des valeurs manquantes :")
+    missing = df.isnull().sum()
+    missing_percent = 100 * df.isnull().sum() / len(df)
+    summary = pd.DataFrame({"Valeurs manquantes :": missing, "Pourcentage (%)": missing_percent})
+    print(summary[summary['Nb manquants'] > 0])
+    return(summary)
+    return(df)
+   
 
 def df_drop_NAN(df, subset=None): #Fonction qui permet de supprimer les lignes contenants des valeurs manquantes, subset=["colonne", "colonne2", etc], si subset est None (juste appeler df_drop_NAN(df) alors toutes les colonnes seront prises) 
-    df= df.copy()
-    df = df.dropna().copy()
-    return df
+    choix = input("Voulez-vous supprimer les lignes avec des valeurs manquantes ? (o/n) : ").lower()
+    if choix == 'o':
+        print("Suppression en cours...")
+        return df.dropna().copy()
+    else:
+        print("Aucune suppression effectuée.")
+        return(df)
 
 def str_replace_values(df, column, old_val,  new_val):  #Fonction qui permet de remplacer une valeur string dans une colonne spécifique
     df[column]= df[column].str.replace(pat = old_val, repl= new_val, regex=False)
@@ -77,3 +92,17 @@ def aggregate (df, columns, conditions):  #Fonction qui permet d'aréger les don
     for column, value in conditions.items():
         df = df[df[column] == value]
     return df.groupby(columns).reset_index()
+
+def saving_file(df, path, format): #Fonction qui permet de save un data frame au format "csv" ou "excel"
+    if format =="csv":
+        df.to_csv(path, index=False)
+    elif format in ["xls", "xlsx"]:
+        df.to_excel(path, index=False)
+    else:
+        print("Format de fichier incompatible, veuillez choisir entre 'csv' ou 'excel'")
+
+#Assemblage sous forme de pipelines
+
+df=(load_path(path).pipe(df_info).pipe(check_missing))      # Pipeline de chargement et d'affichages des informations du dataframe ainsi que les valeurs manquantes
+def pipeline_load_and_info(path):
+    return (load_path(path).pipe(df_info).pipe(check_missing).pipe(df_drop_NAN))
