@@ -1,0 +1,13 @@
+{
+    "file_path": "e:/Prog/Python/data_source.csv",
+    "export_path": "export_power_bi",
+    "mapping_statut": {
+        "V": "Validé",
+        "A": "Annulé",
+        "E": "En cours"
+    },
+    "columns_to_keep": ["Date", "Ville", "Statut", "Montant"],
+    "agg_logic": {
+        "Montant": "sum"
+    }
+}
