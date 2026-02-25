@@ -9,6 +9,15 @@ The file is as follow :
 
 I have then assembled this pipeline in order to clean raw sales data and Power BI Ready. The pipeline is modular which is easy to add/edit or remove functionallity. To use it you basically need Python and pandas and run the Pipeline_data.py.
 
+
+
+Configuration
+The project use a config.json file to handle :
+
+-Access paths (Source/Export).
+-Mapping.
+-Aggregate conditions
+
 Tech Stack:
 Python 3.x
 Pandas (Core engine)
