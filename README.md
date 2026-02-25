@@ -13,10 +13,9 @@ I have then assembled this pipeline in order to clean raw sales data and Power B
 
 Configuration
 The project use a config.json file to handle :
-
--Access paths (Source/Export).
--Mapping.
--Aggregate conditions
+1. Access paths (Source/Export).
+2 .Mapping.
+3. Aggregate conditions
 
 Tech Stack:
 Python 3.x
