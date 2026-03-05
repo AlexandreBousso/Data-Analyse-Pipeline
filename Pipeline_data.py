@@ -1,6 +1,12 @@
 import pandas as pd
 import os
 import requests
+import json
+
+def load_config(config_file):
+    with open(config_file, "r") as f:
+        return json.load(f)
+config = load_config("config.json")
 
 def load_path (path):   
     if not os.path.exists(path):
@@ -227,3 +233,4 @@ if __name__=="__main__":
     create_test_data()
     resultat_final = run_full_test()
     print(resultat_final)
+
