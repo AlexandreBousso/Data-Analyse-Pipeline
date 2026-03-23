@@ -4,6 +4,7 @@ import requests
 import json
 import logging
 import numpy as np
+import streamlit as st
 
 
 
@@ -273,4 +274,3 @@ def run_full_test():
 
 if __name__=="__main__":
     run_full_test()
-
